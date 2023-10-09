@@ -41,7 +41,7 @@ async def on_all_messages(message: types.Message):
     a = openai_response['args']
     types = [1, 69, 70, 71, 72, 114, 121]
     try:
-        index = types[int(a['bedrooms']) - 1]
+        index = types[int(a['bedrooms'])]
     except:
         return message.answer("Некорректный запрос!")
     url = 'https://tolerance-homes.ru/turcia/' + a['location'] + '/' + a['type'] + f"/?&price-max={a['price']}+%24&ap-types[{index}]=1"
