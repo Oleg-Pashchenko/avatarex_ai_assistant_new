@@ -44,7 +44,12 @@ async def on_all_messages(message: types.Message):
         index = types[int(a['bedrooms'])]
     except:
         return message.answer("Некорректный запрос!")
-    url = 'https://tolerance-homes.ru/turcia/' + a['location'] + '/' + a['type'] + f"/?&price-max={a['price']}+%24&ap-types[{index}]=1"
+    if a['type'] == 'kvartiri':
+        url = 'https://tolerance-homes.ru/turcia/' + a['location'] + '/' + a['type'] + f"/?&price-max={a['price']}+%24&ap-types[{index}]=1"
+    else:
+        url = 'https://tolerance-homes.ru/turcia/' + a['location'] + '/' + a[
+            'type'] + f"/?&price-max={a['price']}+%24"
+
     return message.answer(url)
 async def main():
     bot = Bot(os.getenv('TELEGRAM_TOKEN'), parse_mode=ParseMode.HTML)
