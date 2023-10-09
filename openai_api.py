@@ -34,15 +34,11 @@ def get_keywords_values(message):
                         "description": "What is the budget for buying an apartment in USD dollars, e.g. 150000$",
                     },
                     'type': {
-                        "type": "integer",
-                        "description": "Need aparatment (1) or villa (0), e.g. 1",
-                    },
-                    'meters': {
-                        "type": "integer",
-                        "description": "What number of meters are interested in, e.g. 56",
+                        "type": "string",
+                        'enum': ['kvartiri', 'villi']
                     }
                 },
-                "required": ["location", 'bedrooms', 'floors', 'price', 'type', 'meters'],
+                "required": ["location", 'bedrooms', 'price', 'type'],
             },
         }
     ]
