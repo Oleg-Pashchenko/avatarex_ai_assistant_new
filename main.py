@@ -39,7 +39,12 @@ async def on_all_messages(message: types.Message):
     if not openai_response['is_ok']:
         return await message.answer(message.from_user.first_name + ERROR_MESSAGE)
     a = openai_response['args']
-    url = 'https://tolerance-homes.ru/turcia/' + a['location'] + '/' + a['type'] + f"/?&price-max={a['price']}+%24"
+    types = [1, 69, 70, 71, 72, 114, 121]
+    try:
+        index = types[int(a['bedrooms']) - 1]
+    except:
+        return message.answer("Некорректный запрос!")
+    url = 'https://tolerance-homes.ru/turcia/' + a['location'] + '/' + a['type'] + f"/?&price-max={a['price']}+%24&ap-types[{index}]=1"
     return message.answer(url)
 async def main():
     bot = Bot(os.getenv('TELEGRAM_TOKEN'), parse_mode=ParseMode.HTML)
