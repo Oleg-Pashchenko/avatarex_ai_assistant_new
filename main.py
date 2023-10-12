@@ -36,8 +36,8 @@ async def on_all_messages(message: types.Message):
     else:
         url = 'https://tolerance-homes.ru/turcia/' + a['location'] + '/' + a[
             'type'] + f"/?&price-max={a['price']}+%24"
-    response = requests.get(url)
-    print(response)
+    response = requests.get(url).text
+    print(int(response.split('Найдено ')[1].split()[0]))
     return message.answer(messages.SUCCESS_MESSAGE(message.from_user.first_name, url))
 
 
